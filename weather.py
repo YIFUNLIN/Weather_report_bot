@@ -1,5 +1,7 @@
 import requests
+import os
 
+line_token = os.getenv('LINE_TOKEN')
 url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-264D87C4-9C2E-4774-AF87-B987F15828FD'
 data = requests.get(url)   # 取得 JSON 檔案的內容為文字
 data_json = data.json()    # 轉換成 JSON 格式
@@ -21,7 +23,7 @@ all_messages = all_msg.strip()
 
 token = 'yf6Q5uEV3LikZ8eL22yrC0ytdlUnZi1ZzjSf55aJ6Oc' # 自己申請的 LINE Notify 權杖
 headers = {
-    'Authorization': 'Bearer ' + token      # POST 使用的 headers
+    'Authorization': 'Bearer ' + line_token     # POST 使用的 headers
 }
 data = {
     'message':all_messages,        # 發送的訊息
