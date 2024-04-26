@@ -24,7 +24,6 @@ headers = {
     'Authorization': 'Bearer ' + token      # POST 使用的 headers
 }
 data = {
-    'message':all_messages,            # 發送的訊息
+    'message':all_messages,        # 發送的訊息
 }
 data = requests.post('https://notify-api.line.me/api/notify', headers=headers, data=data)    # 發送 LINE NOtify
-    
