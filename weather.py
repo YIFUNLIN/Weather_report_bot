@@ -3,6 +3,11 @@ import os
 
 line_token = os.getenv('LINE_TOKEN')
 token_family = os.getenv('TOKEN_FAMILY')
+
+# 檢查 token_family 是否已設置
+if token_family is None:
+    raise ValueError("TOKEN_FAMILY environment variable is not set.")
+
 url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-264D87C4-9C2E-4774-AF87-B987F15828FD'
 data = requests.get(url)   # 取得 JSON 檔案的內容為文字
 data_json = data.json()    # 轉換成 JSON 格式
@@ -60,8 +65,8 @@ key_city = {'message':key_messages}
 response_key = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=key_city)
 
 
-
-
 # 使用不同的 token 發送到另一個 LINE Notify
-family_headers = {'Authorization': 'Bearer ' + token_family}
-response_key2 = requests.post('https://notify-api.line.me/api/notify', headers=family_headers, data={'message': key_messages})
+family_headers = {
+    'Authorization': 'Bearer ' + token_family }
+key_gro = {'message':key_messages} # 發送北高屏天氣
+response_key2 = requests.post('https://notify-api.line.me/api/notify', headers=family_headers, data=key_gro)
