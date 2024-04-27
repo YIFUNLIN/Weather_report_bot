@@ -2,6 +2,7 @@ import requests
 import os
 
 line_token = os.getenv('LINE_TOKEN')
+token_family = os.getenv('TOKEN_FAMILY')
 url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-264D87C4-9C2E-4774-AF87-B987F15828FD'
 data = requests.get(url)   # 取得 JSON 檔案的內容為文字
 data_json = data.json()    # 轉換成 JSON 格式
@@ -23,6 +24,8 @@ for i in location:
 
     if city == '臺北市':
         key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
+    if city == '高雄市':
+        key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
     if city == '屏東縣':
         key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
 
@@ -39,8 +42,6 @@ all_messages = all_msg.strip()
 out_messages = out_city.strip()
 key_messages = key.strip()
 
-
-token = 'yf6Q5uEV3LikZ8eL22yrC0ytdlUnZi1ZzjSf55aJ6Oc' # 自己申請的 LINE Notify 權杖
 
 headers = {
     'Authorization': 'Bearer ' + line_token     # POST 使用的 headers
@@ -59,3 +60,5 @@ key_city = {'message':key_messages}
 response_key = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=key_city)
 
 
+family = {'Authorization: Bearer'+ token_family}
+response_key2 = requests.post('https://notify-api.line.me/api/notify',headers=family,data=key_city)
