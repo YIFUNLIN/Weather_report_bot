@@ -2,8 +2,8 @@ name: Weather Report Scheduler
 
 on:
   schedule:
-    - cron: "0 */4 * * *"  # 每4小时运行一次，您可以根据需要调整
-  workflow_dispatch:  # 允許手動觸發
+    - cron: "0 */5 * * *" # 每6小时运行一次，您可以根据需要调整
+  workflow_dispatch: # 允許手動觸發
 
 jobs:
   run_weather_script:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'  # 确保与您的Python版本相匹配
+          python-version: "3.8" # 确保与您的Python版本相匹配
 
       - name: Install dependencies
         run: |
