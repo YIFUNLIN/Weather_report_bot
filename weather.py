@@ -60,5 +60,8 @@ key_city = {'message':key_messages}
 response_key = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=key_city)
 
 
-family = {'Authorization': 'Bearer'+ token_family}
-response_key2 = requests.post('https://notify-api.line.me/api/notify',headers=family,data=key_city)
+
+
+# 使用不同的 token 發送到另一個 LINE Notify
+family_headers = {'Authorization': 'Bearer ' + token_family}
+response_key2 = requests.post('https://notify-api.line.me/api/notify', headers=family_headers, data={'message': key_messages})
