@@ -25,4 +25,5 @@ jobs:
       - name: Run the weather report script
         env:
           LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+          TOKEN_FAMILY: ${{ secrets.TOKEN_FAMILY }}
         run: python weather.py
