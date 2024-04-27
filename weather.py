@@ -60,5 +60,5 @@ key_city = {'message':key_messages}
 response_key = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=key_city)
 
 
-family = {'Authorization: Bearer'+ token_family}
+family = {'Authorization': 'Bearer'+ token_family}
 response_key2 = requests.post('https://notify-api.line.me/api/notify',headers=family,data=key_city)
