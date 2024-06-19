@@ -53,12 +53,12 @@ headers = {
 }
 
 # 發送所有城市的天氣資訊
-all_city = {'message':all_messages}
-response_all = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=all_city)
+# all_city = {'message':all_messages}
+# response_all = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=all_city)
 
 # 發送離島的天氣資訊
-out_city = {'message':out_messages}
-response_out = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=out_city)
+# out_city = {'message':out_messages}
+# response_out = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=out_city)
 
 # 發送重點城市的天氣資訊
 key_city = {'message':key_messages}
