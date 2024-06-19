@@ -14,8 +14,6 @@ data_json = data.json()    # 轉換成 JSON 格式
 location = data_json['records']['location']   # 取出 location 的內容
 
 all_msg = '指定縣市天氣預報🤖(未來6小時): \n'
-# out_city = '離島縣市天氣預報🤖(未來6小時): \n'
-# key = " 重點縣市突出🤖(未來6小時): \n\n"
 
 for i in location:
     city = i['locationName']    # 縣市名稱
@@ -28,19 +26,8 @@ for i in location:
         all_msg += '🌞' + msg + '\n\n'
 
 
-    """
-    if city == '金門縣':
-        out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    if city == '澎湖縣':
-        out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    if city == '連江縣':
-        out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    """
-
 # 刪除最後一個換行符
 all_messages = all_msg.strip()
-# out_messages = out_city.strip()
-# key_messages = key.strip()
 
 
 headers = {
@@ -50,16 +37,3 @@ headers = {
 # 發送指定城市的天氣資訊
 all_city = {'message':all_messages}
 response_all = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=all_city)
-
-# 發送離島的天氣資訊
-# out_city = {'message':out_messages}
-# response_out = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=out_city)
-
-
-# 使用不同的 token 發送到另一個 LINE Notify
-"""
-family_headers = {
-    'Authorization': 'Bearer ' + token_family }
-key_gro = {'message':key_messages} # 發送北高屏天氣
-response_key2 = requests.post('https://notify-api.line.me/api/notify', headers=family_headers, data=key_gro)
-"""
