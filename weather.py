@@ -19,7 +19,7 @@ key = " 重點縣市突出🤖(未來6小時): \n\n"
 
 for i in location:
     city = i['locationName']    # 縣市名稱
-    if city not in ['金門縣','澎湖縣','連江縣']:
+    if city in ['臺北市','高雄市','屏東縣','嘉義縣']:
         wx8 = i['weatherElement'][0]['time'][0]['parameter']['parameterName']    # 天氣現象
         maxt8 = i['weatherElement'][4]['time'][0]['parameter']['parameterName'] # 最高溫
         mint8 = i['weatherElement'][2]['time'][0]['parameter']['parameterName'] # 最低溫
@@ -27,24 +27,19 @@ for i in location:
         msg = f'{city}🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} %'
         all_msg += '🌞' + msg + '\n\n'
 
-    if city == '臺北市':
-        key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    if city == '高雄市':
-        key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    if city == '屏東縣':
-        key += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
 
+    """
     if city == '金門縣':
         out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
     if city == '澎湖縣':
         out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
     if city == '連江縣':
         out_city += '🌞' + f'{city} 🌚天氣: {wx8}，最高溫 {maxt8} 度，最低溫 {mint8} 度，降雨機率 {pop8} % \n\n'
-    
+    """
 
 # 刪除最後一個換行符
 all_messages = all_msg.strip()
-out_messages = out_city.strip()
+# out_messages = out_city.strip()
 key_messages = key.strip()
 
 
@@ -52,17 +47,13 @@ headers = {
     'Authorization': 'Bearer ' + line_token     # POST 使用的 headers
 }
 
-# 發送所有城市的天氣資訊
-# all_city = {'message':all_messages}
-# response_all = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=all_city)
+# 發送指定城市的天氣資訊
+all_city = {'message':all_messages}
+response_all = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=all_city)
 
 # 發送離島的天氣資訊
 # out_city = {'message':out_messages}
 # response_out = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=out_city)
-
-# 發送重點城市的天氣資訊
-key_city = {'message':key_messages}
-response_key = requests.post('https://notify-api.line.me/api/notify',headers=headers,data=key_city)
 
 
 # 使用不同的 token 發送到另一個 LINE Notify
