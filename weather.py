@@ -13,9 +13,9 @@ data = requests.get(url)   # 取得 JSON 檔案的內容為文字
 data_json = data.json()    # 轉換成 JSON 格式
 location = data_json['records']['location']   # 取出 location 的內容
 
-all_msg = '所有縣市天氣預報🤖(未來6小時): \n'
-out_city = '離島縣市天氣預報🤖(未來6小時): \n'
-key = " 重點縣市突出🤖(未來6小時): \n\n"
+all_msg = '指定縣市天氣預報🤖(未來6小時): \n'
+# out_city = '離島縣市天氣預報🤖(未來6小時): \n'
+# key = " 重點縣市突出🤖(未來6小時): \n\n"
 
 for i in location:
     city = i['locationName']    # 縣市名稱
@@ -40,7 +40,7 @@ for i in location:
 # 刪除最後一個換行符
 all_messages = all_msg.strip()
 # out_messages = out_city.strip()
-key_messages = key.strip()
+# key_messages = key.strip()
 
 
 headers = {
@@ -57,7 +57,9 @@ response_all = requests.post('https://notify-api.line.me/api/notify',headers=hea
 
 
 # 使用不同的 token 發送到另一個 LINE Notify
+"""
 family_headers = {
     'Authorization': 'Bearer ' + token_family }
 key_gro = {'message':key_messages} # 發送北高屏天氣
 response_key2 = requests.post('https://notify-api.line.me/api/notify', headers=family_headers, data=key_gro)
+"""
